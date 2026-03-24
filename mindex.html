@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRON GYM | الطريق إلى القمة - المبرمج مصطفى</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #e74c3c; /* أحمر حماسي */
+            --bg-color: #1a1a1a; /* أسود للجيم */
+            --card-bg: #222; /* رمادي غامق للكروت */
+            --text-light: #ecf0f1;
+            --text-dark: #333;
+        }
+
+        /* تنسيق عام */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            scroll-behavior: smooth; /* تنقل سلس */
+            overflow-x: hidden; /* لمنع التمرير الأفقي بسبب الحركات */
+        }
+
+        /* --- الحركات الأساسية CSS --- */
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes glow { 0% { text-shadow: 0 0 5px var(--primary-color); } 50% { text-shadow: 0 0 15px var(--primary-color); } 100% { text-shadow: 0 0 5px var(--primary-color); } }
+
+        /* القائمة العلوية */
+        header {
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px); /* تأثير زجاجي شفاف */
+            padding: 15px 5%;
+            position: sticky; top: 0;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .logo { font-size: 2rem; font-weight: bold; color: var(--text-light); }
+        .logo i { animation: glow 2s infinite; color: var(--primary-color); }
+        nav a { text-decoration: none; color: #ccc; margin-right: 20px; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--primary-color); }
+
+        /* القسم الترحيبي (Hero Section) */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=1400') center/cover;
+            height: 80vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; color: white; text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 { font-size: 4rem; margin-bottom: 10px; text-transform: uppercase; animation: pulse 3s infinite; }
+        .hero p { font-size: 1.5rem; max-width: 800px; color: #ddd; }
+        .hero .btn { 
+            background: var(--primary-color); color: white; padding: 15px 30px; 
+            border-radius: 5px; text-decoration: none; font-weight: bold; 
+            margin-top: 20px; transition: transform 0.3s, background 0.3s; 
+        }
+        .hero .btn:hover { background: #c0392b; transform: scale(1.1); }
+
+        /* حاوية المحتوى والحركات */
+        .container { max-width: 1100px; margin: 60px auto; padding: 0 25px; }
+
+        /* عناوين الأقسام */
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--text-light); }
+        .section-title i { color: var(--primary-color); margin-left: 10px; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--primary-color); margin: 10px auto; }
+
+        /* كروت الخدمات */
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card {
+            background: var(--card-bg); padding: 30px; border-radius: 15px; text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s;
+        }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(231, 76, 60, 0.2); }
+        .service-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; }
+        .service-card h3 { color: var(--text-light); margin-top: 0; }
+
+        /* باقات الاشتراك الملونة */
+        .pricing { display: flex; gap: 30px; justify-content: center; margin-top: 50px; }
+        .price-card {
+            background: var(--card-bg); padding: 40px; border-radius: 15px; width: 30%;
+            text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent; transition: 0.3s;
+        }
+        .price-card:hover { transform: scale(1.03); border-color: var(--primary-color); }
+        .price-card.featured { border-color: var(--secondary-color); box-shadow: 0 8px 25px rgba(46, 204, 113, 0.2); }
+        .price-card h3 { color: var(--text-light); margin-top: 0; font-size: 1.8rem; }
+        .price { font-size: 3rem; font-weight: bold; color: var(--primary-color); margin: 20px 0; }
+        .price span { font-size: 1rem; color: #888; font-weight: normal; }
+        .price-card ul { list-style: none; padding: 0; text-align: right; color: #ccc; }
+        .price-card li { margin-bottom: 15px; font-size: 1.1rem; }
+        .price-card i { color: #2ecc71; margin-left: 10px; }
+
+        /* قسم المدربين وتأثير الصور */
+        .trainers { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
+        .trainer-card {
+            background: var(--card-bg); border-radius: 15px; overflow: hidden; text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .trainer-card img { width: 100%; height: 250px; object-fit: cover; transition: transform 0.5s; }
+        .trainer-card:hover img { transform: scale(1.1); }
+        .trainer-card h3 { padding: 15px 10px; color: var(--text-light); background: rgba(0,0,0,0.5); margin: 0; position: relative; top: -5px; }
+
+        /* نموذج الاتصال العصري */
+        .contact-form {
+            background: var(--card-bg); padding: 50px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 60px;
+        }
+        .form-group { position: relative; margin-bottom: 25px; }
+        .contact-form input, .contact-form textarea {
+            width: 100%; padding: 15px; border: 1px solid #444; border-radius: 10px;
+            font-family: inherit; font-size: 1rem; color: var(--text-light);
+            background-color: #333;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--primary-color); background-color: #2a2a2a; outline: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #c0392b 100%);
+            color: white; border: none; padding: 15px 40px; border-radius: 10px;
+            cursor: pointer; font-size: 1.1rem; font-weight: bold; width: 100%;
+            transition: 0.3s;
+        }
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(231, 76, 60, 0.3); }
+
+        /* تذييل الصفحة */
+        footer { background: #111; color: #aaa; text-align: center; padding: 40px; margin-top: auto; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; gap: 20px; }
+        .social-icons i { color: #aaa; transition: 0.3s; cursor: pointer; }
+        .social-icons i:hover { color: var(--primary-color); transform: scale(1.2); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fas fa-dumbbell pulse"></i> IRON GYM</div>
+        <nav>
+            <a href="#home">الرئيسية</a>
+            <a href="#services">خدماتنا</a>
+            <a href="#pricing">الباقات</a>
+            <a href="#contact">اتصل بنا</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1 data-aos="fade-down" data-aos-duration="1000">أيقظ الوحش الذي بداخلك</h1>
+        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">تدرب في أفضل جيم في المنطقة، بأحدث الأجهزة ومدربين محترفين للوصول إلى هدفك.</p>
+        <a href="#pricing" class="btn pulse" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">اشترك الآن</a>
+    </section>
+
+    <div class="container">
+
+        <section id="services">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fas fa-heartbeat"></i> ماذا نقدم لك؟</h2>
+            </div>
+            <div class="services">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-weight-hanging"></i>
+                    <h3>صالة أوزان حرة</h3>
+                    <p>أحدث الدامبلز والأجهزة لبناء عضلات قوية.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-running"></i>
+                    <h3>كارديو ولياقة</h3>
+                    <p>أجهزة مشي ودراجات لحرق الدهون وتحسين اللياقة.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-apple-alt"></i>
+                    <h3>خطط غذائية</h3>
+                    <p>استشارات تغذية لتكملة نظام تدريبك.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fas fa-tags"></i> باقات الاشتراك</h2>
+            </div>
+            <div class="pricing">
+                <div class="price-card" data-aos="flip-right" data-aos-duration="800">
+                    <h3>الباقة الفضية</h3>
+                    <div class="price">30$<span>/شهر</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> دخول 5 أيام في الأسبوع</li>
+                        <li><i class="fas fa-check"></i> استخدام صالة الأوزان</li>
+                        <li><i class="fas fa-times"></i> لا يشمل خطة غذائية</li>
+                    </ul>
+                </div>
+                <div class="price-card featured" data-aos="flip-right" data-aos-duration="800" data-aos-delay="200">
+                    <h3>الباقة الذهبية (الأكثر طلباً)</h3>
+                    <div class="price" style="color:#2ecc71;">50$<span>/شهر</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> دخول يومي مفتوح</li>
+                        <li><i class="fas fa-check"></i> كافة الخدمات (الأوزان والكارديو)</li>
+                        <li><i class="fas fa-check"></i> خطة غذائية شهرية</li>
+                    </ul>
+                </div>
+                <div class="price-card" data-aos="flip-right" data-aos-duration="800" data-aos-delay="400">
+                    <h3>الباقة الماسية</h3>
+                    <div class="price">80$<span>/شهر</span></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> دخول يومي مفتوح</li>
+                        <li><i class="fas fa-check"></i> كافة الخدمات</li>
+                        <li><i class="fas fa-check"></i> مدرب خاص لـ 4 حصص</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="trainers">
+            <div class="section-title" data-aos="fade-up">
+                <h2><i class="fas fa-user-friends"></i> مدربينا المحترفين</h2>
+            </div>
+            <div class="trainers">
+                <div class="trainer-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1599818815152-d33633b4971d?q=80&w=600" alt="مدرب">
+                    <h3>المدرب: محمد</h3>
+                </div>
+                <div class="trainer-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1591799264318-7e698ddb7c1d?q=80&w=600" alt="مدرب">
+                    <h3>المدرب: أحمد</h3>
+                </div>
+            </div>
+        </section>
+
+        <div class="contact-form" id="contact" data-aos="fade-up" data-aos-duration="800">
+            <h2>سجل الآن للاستفادة من العروض</h2>
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="اسمك الكامل" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="بريدك الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="اكتب استفسارك هنا..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn pulse">إرسال طلب اشتراك <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>تم التطوير بواسطة مبرمج My Web School المبدع: مصطفى</p>
+        <div class="social-icons">
+            <i class="fab fa-facebook fa-2x"></i>
+            <i class="fab fa-instagram fa-2x"></i>
+            <i class="fab fa-github fa-2x"></i>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true }); // تفعيل الحركات عند التمرير مرة واحدة فقط
+    </script>
+
+</body>
+</html>

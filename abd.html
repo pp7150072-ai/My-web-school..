@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Way School | حماية البيئة - عبد الله</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2ecc71; /* أخضر هادئ للبيئة */
+            --dark-bg: #111111; /* أسود عميق */
+            --card-bg: #1e1e1e; /* رمادي غامق للكروت */
+            --text-color: #ffffff;
+        }
+
+        * { box-sizing: border-box; transition: 0.3s; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0; background-color: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* القائمة العلوية */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 5%;
+            position: fixed; width: 100%; top: 0;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; border-bottom: 2px solid #333;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        nav a { text-decoration: none; color: #bbb; margin-right: 20px; font-size: 1.1rem; }
+        nav a:hover { color: var(--primary); }
+
+        /* قسم الترحيب (Hero) */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1471') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center;
+        }
+        .hero h1 { font-size: 4rem; margin: 0; color: var(--primary); text-shadow: 0 0 20px rgba(46, 204, 113, 0.3); }
+        .hero p { font-size: 1.5rem; margin: 20px 0; max-width: 700px; color: #ccc; }
+
+        /* الكروت والمواضيع */
+        .container { padding: 80px 10%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card {
+            background: var(--card-bg); border-radius: 15px;
+            text-align: center; border: 1px solid #333; overflow: hidden;
+        }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card img { width: 100%; height: 200px; object-fit: cover; filter: grayscale(30%); }
+        .card-body { padding: 30px; }
+        .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
+
+        /* قسم التوعية بالدارك مود */
+        .awareness-box {
+            background: #161616;
+            padding: 40px; border-radius: 20px; border-right: 5px solid var(--primary);
+            margin-top: 50px;
+        }
+        .highlight { color: var(--primary); font-weight: bold; }
+
+        /* نموذج التواصل */
+        .contact { background: #1a1a1a; padding: 50px; border-radius: 20px; margin-top: 50px; border: 1px solid #333; }
+        input, textarea {
+            width: 100%; padding: 15px; margin-bottom: 20px;
+            background: #252525; border: 1px solid #333; color: white; border-radius: 5px;
+        }
+        .btn {
+            background: var(--primary); color: white; padding: 15px 40px;
+            border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 1.1rem;
+            display: inline-block; text-decoration: none;
+        }
+        .btn:hover { background: #27ae60; transform: scale(1.05); }
+
+        footer { text-align: center; padding: 40px; background: #000; border-top: 1px solid #222; }
+        footer span { color: var(--primary); font-weight: bold; }
+
+        /* النبض الأخضر */
+        @keyframes pulse-green { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+        .eco-dot { height: 10px; width: 10px; background: var(--primary); border-radius: 50%; display: inline-block; position: relative; margin-left: 10px; }
+        .eco-dot::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary); border-radius: 50%; animation: pulse-green 1.5s infinite; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fas fa-globe-americas"></i> MY WAY SCHOOL</div>
+        <nav>
+            <a href="#">الرئيسية</a>
+            <a href="#issues">المشكلات</a>
+            <a href="#solutions">الحلول</a>
+            <a href="#contact">تواصل</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 data-aos="fade-down">بيئة مستدامة</h1>
+        <p data-aos="fade-up" data-aos-delay="200">الوعي هو الخطوة الأولى للتغيير. انضم لرحلة عبد الله في حماية كوكب الأرض.</p>
+        <a href="#issues" class="btn" data-aos="zoom-in" data-aos-delay="400">اكتشف المزيد</a>
+    </section>
+
+    <div class="container">
+        <h2 id="issues" style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">التحديات البيئية</h2>
+        <div class="grid">
+            <div class="card" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=600" alt="الطبيعة">
+                <div class="card-body">
+                    <i class="fas fa-tree"></i>
+                    <h3>إزالة الغابات</h3>
+                    <p>فقدان الرئة الخضراء للأرض يسرع من عملية الاحتباس الحراري.</p>
+                </div>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=600" alt="التلوث">
+                <div class="card-body">
+                    <i class="fas fa-water"></i>
+                    <h3>تلوث المياه</h3>
+                    <p>المخلفات الكيميائية تقتل الحياة في الأنهار والمحيطات.</p>
+                </div>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=600" alt="إلكترونيات">
+                <div class="card-body">
+                    <i class="fas fa-recycle"></i>
+                    <h3>إعادة تدوير الأجهزة</h3>
+                    <p>تحويل اللوحات الأم للهواتف القديمة إلى Mini PC يقلل النفايات السامة.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="solutions" class="awareness-box" data-aos="fade-right">
+            <h2><span class="eco-dot"></span> مبادرة عبد الله للحلول الذكية</h2>
+            <p>بدلاً من رمي الأجهزة، نقوم في <span class="highlight">My Way School</span> بتعليم الطلاب كيفية إعادة استخدام القطع الإلكترونية لتقليل الضرر البيئي.</p>
+        </div>
+
+        <div class="contact" id="contact" data-aos="fade-up">
+            <h2>تواصل معنا</h2>
+            <input type="text" placeholder="الاسم">
+            <input type="email" placeholder="البريد الإلكتروني">
+            <textarea rows="5" placeholder="رسالتك التوعوية..."></textarea>
+            <button class="btn">إرسال</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>تم التصميم بواسطة المبرمج: <span>عبد الله</span></p>
+        <p>حقوق النشر © 2026 - فريق My Way School</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
+</body>
+</html>
